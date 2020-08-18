@@ -17,8 +17,17 @@ public class SinglyLinkedListEx {
 		//	별도의 header 값과 SinglyNode 클래스를 감싸기 때문에
 		//	header data를 삭제할 수 있다.
 		sll.delete(1);
-		sll.delete(3);
+		sll.delete(4);
 		
+		sll.retrieve();
+
+		System.out.println("===== ===== ===== ===== =====");
+		
+		sll.append(2);
+		sll.append(3);
+		sll.retrieve();
+		
+		sll.removeDups();
 		sll.retrieve();
 	}
 	

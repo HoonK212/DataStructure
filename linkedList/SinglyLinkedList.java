@@ -55,4 +55,30 @@ public class SinglyLinkedList {
 		System.out.println(node.data);
 	}
 	
+	// 중복 삭제
+	//	버퍼를 사용한 경우 공간복잡도 -> O(N)
+	//	버퍼를 사용한 경우 시간복잡도 -> O(N)
+	//	버퍼를 사용하지 않은 경우(아래) 공간복잡도 -> O(1)
+	//	버퍼를 사용하지 않은 경우(아래) 시간복잡도 -> O(N^2)
+	public void removeDups() {
+		
+		SinglyNode n = header;
+		
+		while(n != null && n.next != null) {
+			
+			SinglyNode r = n;
+
+			while(r.next != null) {
+			
+				if(n.data == r.next.data) {
+					r.next = r.next.next;
+				} else {
+					r = r.next;
+				}
+			}
+			
+			n = n.next;
+		}
+	}
+	
 }
