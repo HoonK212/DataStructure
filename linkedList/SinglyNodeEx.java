@@ -15,5 +15,20 @@ public class SinglyNodeEx {
 		head.delete(3);
 		
 		head.retrieve();
+		
+		System.out.println("===== ===== ===== ===== =====");
+		
+		head.append(7);
+		head.append(4);
+		head.append(5);
+		head.append(6);
+		head.append(3);
+		head.retrieve();
+		
+		int k = 2;
+		SinglyNode kth = head.KthToLast(head, k);
+		System.out.println("Last k(" + k + ")th data is " + kth.getData());
+		
 	}
+	
 }

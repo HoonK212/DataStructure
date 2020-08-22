@@ -49,4 +49,38 @@ public class SinglyNode {
 		
 		System.out.println(node.data);
 	}
+	
+	// 뒤부터 세기
+	public SinglyNode KthToLast(SinglyNode first, int k) {
+		
+		SinglyNode n = first;
+		int total = 1;
+		
+		while(n.next != null) {
+			total++;
+			n = n.next;
+		}
+		
+		n = first;
+		
+		for(int i=1; i<total-k+1; i++) {
+			n = n.next;
+		}
+		
+		return n;
+	}
+
+	public int getData() {
+		return data;
+	}
+	public void setData(int data) {
+		this.data = data;
+	}
+	public SinglyNode getNext() {
+		return next;
+	}
+	public void setNext(SinglyNode next) {
+		this.next = next;
+	}
+	
 }
