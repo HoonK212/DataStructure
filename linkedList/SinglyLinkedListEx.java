@@ -13,9 +13,7 @@ public class SinglyLinkedListEx {
 		
 		sll.retrieve();
 		
-		// SinglyLinkedList 클래스가
-		//	별도의 header 값과 SinglyNode 클래스를 감싸기 때문에
-		//	header data를 삭제할 수 있다.
+		// SinglyLinkedList는 SinglyNode와 다르게 header data를 삭제할 수 있다.
 		sll.delete(1);
 		sll.delete(4);
 		
@@ -25,10 +23,30 @@ public class SinglyLinkedListEx {
 		
 		sll.append(2);
 		sll.append(3);
+		sll.append(4);
+		sll.append(5);
 		sll.retrieve();
 		
+		// 중복 제거
 		sll.removeDups();
 		sll.retrieve();
+
+		System.out.println("===== ===== ===== ===== =====");
+		
+		sll.append(7);
+		sll.append(4);
+		sll.append(5);
+		sll.append(6);
+		sll.append(3);
+		sll.retrieve();
+		
+		// 뒤부터 k번째 출력
+		int k = 5;
+
+		// 방법 1
+		SinglyNode kth = sll.KthToLast(sll, k);
+		System.out.println("Last k(" + k + ")th data is " + kth.data);
+
 	}
 	
 }

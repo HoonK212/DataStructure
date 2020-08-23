@@ -2,9 +2,12 @@ package dataStructure.linkedList;
 
 public class SinglyNode {
 
-	private int data;
-	private SinglyNode next = null;
+	public int data;
+	public SinglyNode next = null;
 	
+	public SinglyNode() {
+	}
+
 	public SinglyNode(int data) {
 		this.data = data;
 	}
@@ -16,7 +19,7 @@ public class SinglyNode {
 		SinglyNode node = this; // this == head
 		
 		while(node.next != null) {
-			node = node.next;
+			node = node.next; // node 변수에 그 다음 SinglyNode를 넣음
 		}
 		
 		node.next = end;
@@ -47,40 +50,7 @@ public class SinglyNode {
 			node = node.next;
 		}
 		
-		System.out.println(node.data);
-	}
-	
-	// 뒤부터 세기
-	public SinglyNode KthToLast(SinglyNode first, int k) {
-		
-		SinglyNode n = first;
-		int total = 1;
-		
-		while(n.next != null) {
-			total++;
-			n = n.next;
-		}
-		
-		n = first;
-		
-		for(int i=1; i<total-k+1; i++) {
-			n = n.next;
-		}
-		
-		return n;
-	}
-
-	public int getData() {
-		return data;
-	}
-	public void setData(int data) {
-		this.data = data;
-	}
-	public SinglyNode getNext() {
-		return next;
-	}
-	public void setNext(SinglyNode next) {
-		this.next = next;
+		System.out.println(node.data); // 마지막 SinglyNode의 data 출력
 	}
 	
 }
