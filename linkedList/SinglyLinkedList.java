@@ -80,25 +80,4 @@ public class SinglyLinkedList {
 		}
 	}
 	
-	// 뒤부터 k번째 출력
-	//	방법 1
-	public SinglyNode KthToLast(SinglyLinkedList sll , int k) {
-		
-		SinglyNode node = sll.header.next;
-		int total = 1;
-		
-		while(node.next != null) {
-			total++;
-			node = node.next;
-		}
-		
-		node = sll.header.next;
-		
-		for(int i=1; i<total-k+1; i++) {
-			node = node.next;
-		}
-		
-		return node;
-	}
-	
 }

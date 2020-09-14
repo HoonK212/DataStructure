@@ -31,22 +31,6 @@ public class SinglyLinkedListEx {
 		sll.removeDups();
 		sll.retrieve();
 
-		System.out.println("===== ===== ===== ===== =====");
-		
-		sll.append(7);
-		sll.append(4);
-		sll.append(5);
-		sll.append(6);
-		sll.append(3);
-		sll.retrieve();
-		
-		// 뒤부터 k번째 출력
-		int k = 5;
-
-		// 방법 1
-		SinglyNode kth = sll.KthToLast(sll, k);
-		System.out.println("Last k(" + k + ")th data is " + kth.data);
-
 	}
 	
 }
