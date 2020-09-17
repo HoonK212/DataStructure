@@ -71,37 +71,27 @@ public class SinglyNodeEx {
 	}
 	
 	//	방법 2 : 재귀호출
+	//		공간복잡도 -> O(N)
+	//		시간복잡도 -> O(2N)
+	//			빅O표기법 -> O(N)
 	public static class Reference {
 		public int count = 0;
 	}
 	
 	public static SinglyNode KthToLast2(SinglyNode n , int k, Reference r) {
 		
-		System.out.println();
-		System.out.println(n + "\n");
-		
 		if(n == null) {
-			System.out.println("return null 이전\n");
 			return null;
 		}
 		
 		SinglyNode found = KthToLast2(n.next, k, r);
 		
-		if(found==null) {
-			System.out.println("found 데이터 null\n");
-		} else {
-			System.out.println("found 데이터 " + found.data + "\n");
-		}
-		
 		r.count++;
-		System.out.println("count++ 이후 " + r.count + "\n");
 		
 		if (r.count == k) {
-			System.out.println("if 내부 *** *** *** " + n.data + "\n");
 			return n;
 		}
 		
-		System.out.println("if 이후 ### ### ###\n");
 		return found;
 	}
 	
