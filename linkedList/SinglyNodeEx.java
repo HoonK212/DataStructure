@@ -47,6 +47,26 @@ public class SinglyNodeEx {
 		deleteSinglyNode(KthToLast(head, 2)); // 뒤에서 2번째 노드 삭제
 		head.retrieve();
 
+		System.out.println("===== ===== ===== ===== =====");
+
+		// Linked List Digit 합산 알고리즘
+		SinglyNode l1 = new SinglyNode(9);
+		l1.append(1);
+		l1.append(4);
+		l1.retrieve();
+		
+		SinglyNode l2 = new SinglyNode(6);
+		l2.append(4);
+		l2.retrieve();
+		
+		SinglyNode node = sumLists(l1, l2);
+		
+		System.out.println(" === Linked List Digit 합산 알고리즘 === ");
+		while (node.next != null) {
+			System.out.print(node.data + " -> ");
+			node = node.next;
+		}
+		System.out.println(node.data);
 	}
 	
 	// 뒤부터 k번째 출력
@@ -132,4 +152,112 @@ public class SinglyNodeEx {
 		
 		return true;
 	}
+	
+	// Linked List Digit 합산 알고리즘
+	//	역방향으로 List 제시
+//	public static SinglyNode sumLists(SinglyNode l1, SinglyNode l2, int carry) {
+//		
+//		if (l1 == null & l2 == null && carry == 0) {
+//			return null;
+//		}
+//		
+//		SinglyNode result = new SinglyNode();
+//		int value = carry;
+//		
+//		if (l1 != null) {
+//			value += l1.data;
+//		}
+//		if (l2 != null) {
+//			value += l2.data;
+//		}
+//		result.data = value % 10;
+//		
+//		if (l1 != null || l2 !=null) {
+//			SinglyNode next = sumLists(l1 == null? null : l1.next, l2 == null? null : l2.next, value >= 10? 1 : 0);
+//			result.next = next;
+//		}
+//		
+//		return result;
+//	}
+	
+	//	정방향으로 List 제시
+	public static class Storage {
+		
+		int carry = 0;
+		
+		SinglyNode result = null;
+	}
+	
+	public static int getListLength(SinglyNode node) {
+		
+		int total = 0;
+		
+		while( node != null) {
+			total ++;
+			node = node.next;
+		}
+		
+		return total;
+	}
+	
+	public static SinglyNode insertBefore (SinglyNode node, int data) {
+	
+		SinglyNode before = new SinglyNode(data);
+		
+		if(node != null) {
+			before.next = node;
+		}
+		
+		return before;
+	}
+	
+	public static SinglyNode LPadList(SinglyNode node, int length) {
+		
+		SinglyNode head = node;
+		
+		for (int i = 0; i < length; i++) {
+			head = insertBefore(head, 0);
+		}
+		
+		return head;
+	}
+	
+	public static Storage addLists(SinglyNode l1, SinglyNode l2) {
+		
+		if(l1 == null && l2 == null) {
+			Storage storage = new Storage();
+			return storage;
+		}
+		
+		Storage storage = addLists(l1.next, l2.next);
+		
+		int value = storage.carry + l1.data + l2.data;
+		int data = value % 10;
+		
+		storage.result = insertBefore(storage.result, data);
+		storage.carry = value / 10;
+		
+		return storage;
+	}
+	
+	public static SinglyNode sumLists(SinglyNode l1, SinglyNode l2) {
+		
+		int len1 = getListLength(l1);
+		int len2 = getListLength(l2);
+		
+		if ( len1 < len2 ) {
+			l1 = LPadList(l1, len2 - len1);
+		} else {
+			l2 = LPadList(l2, len1 - len2);
+		}
+		
+		Storage storage = addLists(l1, l2);
+		
+		if (storage.carry != 0) {
+			storage.result = insertBefore(storage.result, storage.carry);
+		}
+		
+		return storage.result;
+	}
+	
 }
