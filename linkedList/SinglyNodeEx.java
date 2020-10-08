@@ -1,5 +1,7 @@
 package dataStructure.linkedList;
 
+import javax.xml.soap.Node;
+
 public class SinglyNodeEx {
 	public static void main(String[] args) {
 		
@@ -281,6 +283,43 @@ public class SinglyNodeEx {
 		}
 		
 		return null;
+	}
+	
+	// 루프 찾기
+	public static class Test {
+		
+		public static void main (String[] args) {
+			SinglyNode n1 = new SinglyNode(1);
+		}
+		
+		private static SinglyNode findLoop (SinglyNode head) {
+			
+			SinglyNode fast = head;
+			SinglyNode slow = head;
+			
+			while (fast != null && fast.next != null) {
+				
+				slow = slow.next;
+				fast = fast.next.next;
+				
+				if(fast == slow) {
+					break;
+				}
+			}
+			
+			if (fast == null || fast.next == null) {
+				return null;
+			}
+			
+			slow = head;
+			
+			while (fast != slow) {
+				slow = slow.next;
+				fast = fast.next;
+			}
+			
+			return fast;
+		}
 	}
 	
 }
